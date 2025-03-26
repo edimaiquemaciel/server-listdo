@@ -1,13 +1,10 @@
-const jsonServer = require("json-server");
+const jsonServer = require('json-server');
 const server = jsonServer.create();
-const router = jsonServer.router("db.json");
+const router = jsonServer.router('db.json'); // Lê o db.json da raiz
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
-server.use(jsonServer.bodyParser);
-server.use("/pupapi", router);
+server.use(router);
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`pupapi Server is running on port ${PORT}`);
-});
+// Exporta para o Vercel
+module.exports = server;
